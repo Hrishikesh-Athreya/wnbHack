@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live Call Monitoring Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6769e9",
+                        "primary-dark": "#5153cf",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111221",
+                        "secondary": "#10b981", // Emerald 500
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "2xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for transcript */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden h-screen flex flex-col">
+<!-- Header -->
+<header class="bg-white dark:bg-[#1e1e2d] shadow-sm z-20 border-b border-slate-200 dark:border-slate-800 shrink-0">
+<div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+<!-- Left: Live Status -->
+<div class="flex items-center gap-3 w-1/4">
+<div class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+</div>
+<span class="text-slate-900 dark:text-white font-bold tracking-tight text-sm uppercase">Live Call</span>
+</div>
+<!-- Center: Call Info & Timer -->
+<div class="flex flex-col items-center justify-center w-2/4">
+<div class="flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-slate-400">
+<span class="text-slate-900 dark:text-white font-semibold">John Smith</span>
+<span class="text-slate-300 dark:text-slate-600">•</span>
+<span>TechCorp Inc</span>
+</div>
+<div class="font-mono text-xl font-bold text-slate-900 dark:text-white tracking-wider mt-0.5">
+                    04:23
+                </div>
+</div>
+<!-- Right: Controls -->
+<div class="flex items-center justify-end gap-3 w-1/4">
+<button class="p-2 text-slate-500 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors" title="Mute">
+<span class="material-symbols-outlined text-[20px]">mic_off</span>
+</button>
+<button class="p-2 text-slate-500 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors" title="Volume">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</button>
+<div class="h-6 w-px bg-slate-200 dark:bg-slate-700 mx-1"></div>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 dark:border-red-900/50 dark:text-red-400 dark:hover:bg-red-900/20 transition-all font-semibold text-sm">
+<span class="material-symbols-outlined text-[18px]">call_end</span>
+                    End Call
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 overflow-hidden p-6 max-w-[1600px] w-full mx-auto">
+<div class="grid grid-cols-12 gap-6 h-full">
+<!-- LEFT PANEL (60%) -->
+<div class="col-span-12 lg:col-span-7 flex flex-col gap-6 h-full overflow-y-auto pr-1">
+<!-- Audio Visualizer Card -->
+<div class="bg-white dark:bg-[#1e1e2d] rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none p-6 border border-slate-100 dark:border-slate-800 shrink-0">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">graphic_eq</span>
+<h3 class="font-bold text-slate-900 dark:text-white">Live Audio Stream</h3>
+</div>
+<div class="flex items-center gap-2">
+<span class="flex h-2 w-2 rounded-full bg-primary"></span>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">Agent Alpha is speaking...</span>
+</div>
+</div>
+<!-- Waveform Visual -->
+<div aria-label="Audio waveform visualization" class="h-24 flex items-center justify-center gap-1 w-full overflow-hidden mask-linear-fade">
+<!-- Simulated waveform using tailwind height classes -->
+<div class="w-1.5 bg-secondary/40 h-8 rounded-full"></div>
+<div class="w-1.5 bg-secondary/60 h-12 rounded-full"></div>
+<div class="w-1.5 bg-secondary/80 h-6 rounded-full"></div>
+<div class="w-1.5 bg-secondary/40 h-10 rounded-full"></div>
+<div class="w-1.5 bg-slate-200 dark:bg-slate-700 h-2 rounded-full mx-1"></div> <!-- Pause -->
+<div class="w-1.5 bg-primary/60 h-16 rounded-full animate-pulse"></div>
+<div class="w-1.5 bg-primary h-20 rounded-full animate-pulse"></div>
+<div class="w-1.5 bg-primary h-24 rounded-full animate-pulse"></div>
+<div class="w-1.5 bg-primary h-14 rounded-full animate-pulse"></div>
+<div class="w-1.5 bg-primary/80 h-18 rounded-full animate-pulse"></div>
+<div class="w-1.5 bg-primary/50 h-10 rounded-full animate-pulse"></div>
+<div class="w-1.5 bg-primary/30 h-6 rounded-full"></div>
+<div class="w-1.5 bg-slate-200 dark:bg-slate-700 h-2 rounded-full mx-1"></div> <!-- Pause -->
+<div class="w-1.5 bg-secondary/40 h-5 rounded-full"></div>
+<div class="w-1.5 bg-secondary/60 h-9 rounded-full"></div>
+<div class="w-1.5 bg-secondary/30 h-4 rounded-full"></div>
+<!-- Repeated pattern for visual density -->
+<div class="w-1.5 bg-slate-100 dark:bg-slate-800 h-1 rounded-full"></div>
+<div class="w-1.5 bg-slate-100 dark:bg-slate-800 h-1 rounded-full"></div>
+<div class="w-1.5 bg-slate-100 dark:bg-slate-800 h-1 rounded-full"></div>
+<div class="w-1.5 bg-slate-100 dark:bg-slate-800 h-1 rounded-full"></div>
+<div class="w-1.5 bg-slate-100 dark:bg-slate-800 h-1 rounded-full"></div>
+<div class="w-1.5 bg-slate-100 dark:bg-slate-800 h-1 rounded-full"></div>
+<div class="w-1.5 bg-slate-100 dark:bg-slate-800 h-1 rounded-full"></div>
+<div class="w-1.5 bg-slate-100 dark:bg-slate-800 h-1 rounded-full"></div>
+<div class="w-1.5 bg-slate-100 dark:bg-slate-800 h-1 rounded-full"></div>
+<div class="w-1.5 bg-slate-100 dark:bg-slate-800 h-1 rounded-full"></div>
+<div class="w-1.5 bg-slate-100 dark:bg-slate-800 h-1 rounded-full"></div>
+<div class="w-1.5 bg-slate-100 dark:bg-slate-800 h-1 rounded-full"></div>
+<div class="w-1.5 bg-slate-100 dark:bg-slate-800 h-1 rounded-full"></div>
+<div class="w-1.5 bg-slate-100 dark:bg-slate-800 h-1 rounded-full"></div>
+<div class="w-1.5 bg-slate-100 dark:bg-slate-800 h-1 rounded-full"></div>
+</div>
+</div>
+<!-- Live Transcript Card -->
+<div class="bg-white dark:bg-[#1e1e2d] rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-slate-100 dark:border-slate-800 flex-1 flex flex-col min-h-0">
+<div class="p-4 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+<h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400">forum</span>
+                            Live Transcript
+                        </h3>
+<span class="text-xs font-mono text-slate-400">Auto-scrolling ON</span>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-6">
+<!-- Message Item: Customer -->
+<div class="flex flex-col gap-1 items-start max-w-[85%]">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-xs font-semibold text-slate-500">Customer</span>
+<span class="text-[10px] text-slate-400 font-mono">[00:03:12]</span>
+</div>
+<div class="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 px-4 py-3 rounded-2xl rounded-tl-sm text-sm leading-relaxed shadow-sm">
+                                Hello, I'm calling because I saw your ad about the enterprise plan, but I'm not sure if it fits our current budget cycle.
+                            </div>
+</div>
+<!-- Message Item: Agent -->
+<div class="flex flex-col gap-1 items-end max-w-[85%] self-end">
+<div class="flex items-center gap-2 mb-1 flex-row-reverse">
+<span class="text-xs font-semibold text-primary">Agent Alpha</span>
+<span class="text-[10px] text-slate-400 font-mono">[00:03:25]</span>
+</div>
+<div class="bg-primary text-white px-4 py-3 rounded-2xl rounded-tr-sm text-sm leading-relaxed shadow-md shadow-primary/20">
+                                I completely understand budget cycles can be tricky. We actually offer flexible payment terms specifically for enterprise clients. Could you tell me a bit more about what you're looking for?
+                            </div>
+</div>
+<!-- Message Item: Customer -->
+<div class="flex flex-col gap-1 items-start max-w-[85%]">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-xs font-semibold text-slate-500">Customer</span>
+<span class="text-[10px] text-slate-400 font-mono">[00:04:15]</span>
+</div>
+<div class="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 px-4 py-3 rounded-2xl rounded-tl-sm text-sm leading-relaxed shadow-sm">
+                                Well, mostly looking for API access and dedicated support. But I heard your implementation takes months.
+                            </div>
+</div>
+<!-- Message Item: Agent -->
+<div class="flex flex-col gap-1 items-end max-w-[85%] self-end">
+<div class="flex items-center gap-2 mb-1 flex-row-reverse">
+<span class="text-xs font-semibold text-primary">Agent Alpha</span>
+<span class="text-[10px] text-slate-400 font-mono">[00:04:22]</span>
+</div>
+<div class="bg-primary text-white px-4 py-3 rounded-2xl rounded-tr-sm text-sm leading-relaxed shadow-md shadow-primary/20">
+                                That's a valid concern. However, for a setup like yours, we typically go live in under 2 weeks.
+                            </div>
+</div>
+<!-- Typing Indicator -->
+<div class="flex flex-col gap-1 items-start max-w-[85%] animate-pulse">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-xs font-semibold text-slate-500">Customer is typing...</span>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 text-slate-800 dark:text-slate-200 px-4 py-3 rounded-2xl rounded-tl-sm text-sm leading-relaxed w-16 flex items-center justify-center gap-1">
+<span class="w-1.5 h-1.5 bg-slate-400 rounded-full"></span>
+<span class="w-1.5 h-1.5 bg-slate-400 rounded-full"></span>
+<span class="w-1.5 h-1.5 bg-slate-400 rounded-full"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT PANEL (40%) -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-6 h-full overflow-y-auto pb-1">
+<!-- Agent Activity Card -->
+<div class="bg-white dark:bg-[#1e1e2d] rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-slate-100 dark:border-slate-800 relative overflow-hidden">
+<!-- Sticky Header -->
+<div class="bg-white/90 dark:bg-[#1e1e2d]/90 backdrop-blur-sm p-4 border-b border-slate-100 dark:border-slate-800 sticky top-0 z-10 flex justify-between items-center">
+<h3 class="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">smart_toy</span>
+                            AI Intelligence
+                        </h3>
+<div class="flex items-center gap-2 px-2.5 py-1 bg-purple-50 dark:bg-purple-900/20 text-primary rounded-full border border-purple-100 dark:border-purple-900/50">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-xs font-bold uppercase tracking-wide">Thinking...</span>
+</div>
+</div>
+<!-- Timeline Content -->
+<div class="p-5">
+<div class="relative pl-6 border-l-2 border-slate-100 dark:border-slate-700 space-y-8">
+<!-- Item 1 -->
+<div class="relative">
+<span class="absolute -left-[31px] top-1 h-4 w-4 rounded-full border-2 border-white dark:border-[#1e1e2d] bg-blue-500 shadow-sm"></span>
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-400 mb-0.5">Just now</span>
+<p class="text-sm font-medium text-slate-800 dark:text-slate-200">Analyzing customer sentiment shift</p>
+<p class="text-xs text-slate-500 mt-1">Detected positive signal keywords.</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="relative">
+<span class="absolute -left-[31px] top-1 h-4 w-4 rounded-full border-2 border-white dark:border-[#1e1e2d] bg-secondary shadow-sm"></span>
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-400 mb-0.5">15s ago</span>
+<p class="text-sm font-medium text-slate-800 dark:text-slate-200">Retrieved Response #47</p>
+<div class="mt-2 bg-slate-50 dark:bg-slate-800 p-2 rounded border border-slate-100 dark:border-slate-700 text-xs text-slate-600 dark:text-slate-400">
+                                        Suggested: "We typically go live in under 2 weeks for this scale."
+                                    </div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="relative">
+<span class="absolute -left-[31px] top-1 h-4 w-4 rounded-full border-2 border-white dark:border-[#1e1e2d] bg-purple-500 shadow-sm"></span>
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-400 mb-0.5">1m ago</span>
+<p class="text-sm font-medium text-slate-800 dark:text-slate-200">Detected objection: Pricing comparison</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Call Metrics Card -->
+<div class="bg-primary/5 dark:bg-[#252538] rounded-xl border border-primary/10 dark:border-primary/20 p-5">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary text-[20px]">analytics</span>
+<h3 class="font-bold text-slate-900 dark:text-white">Live Metrics</h3>
+</div>
+<div class="grid grid-cols-3 gap-4 mb-6">
+<!-- Metric 1 -->
+<div class="bg-white dark:bg-[#1e1e2d] rounded-lg p-3 shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col items-center">
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-1">Sentiment</span>
+<span class="text-xl font-bold text-secondary">75/100</span>
+</div>
+<!-- Metric 2 -->
+<div class="bg-white dark:bg-[#1e1e2d] rounded-lg p-3 shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col items-center">
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-1">Close Prob.</span>
+<span class="text-xl font-bold text-primary">65%</span>
+</div>
+<!-- Metric 3 -->
+<div class="bg-white dark:bg-[#1e1e2d] rounded-lg p-3 shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col items-center">
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium mb-1">Questions</span>
+<span class="text-xl font-bold text-slate-800 dark:text-white">8</span>
+</div>
+</div>
+<!-- Talk Time Progress -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between text-xs font-medium text-slate-500 dark:text-slate-400">
+<span>Agent (55%)</span>
+<span>Talk Time</span>
+<span>Customer (45%)</span>
+</div>
+<div class="h-2.5 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden flex">
+<div class="h-full bg-primary" style="width: 55%"></div>
+<div class="h-full bg-secondary" style="width: 45%"></div>
+</div>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="bg-white dark:bg-[#1e1e2d] rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] dark:shadow-none border border-slate-100 dark:border-slate-800 p-5 mt-auto">
+<h3 class="font-bold text-slate-900 dark:text-white mb-4 text-sm uppercase tracking-wider text-slate-500">Quick Actions</h3>
+<div class="flex flex-col gap-3">
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-white font-semibold py-2.5 rounded-lg shadow-md shadow-primary/20 hover:bg-primary-dark transition-colors">
+<span class="material-symbols-outlined text-[20px]">call</span>
+                            Join Call
+                        </button>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-[18px]">note_add</span>
+                                Add Note
+                            </button>
+<button class="flex items-center justify-center gap-2 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-medium py-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined text-[18px]">manage_search</span>
+                                Search
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Toast Overlay -->
+<div class="fixed top-24 right-8 z-50 animate-bounce">
+<div class="bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-3 rounded-lg shadow-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-yellow-400 dark:text-yellow-500">lightbulb</span>
+<div>
+<p class="font-bold text-sm">New pattern learned!</p>
+<p class="text-xs text-slate-300 dark:text-slate-500">Objection handling for 'Enterprise Budget'</p>
+</div>
+<button class="text-slate-400 hover:text-white dark:hover:text-slate-700 ml-2">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+</body></html>

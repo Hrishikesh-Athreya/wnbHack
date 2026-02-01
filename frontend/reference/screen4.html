@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Call Connection Success State</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec13",
+                        "primary-dark": "#0fae0f", // Darker shade for better text readability
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102210",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display flex flex-col min-h-screen">
+<!-- Main Container: Full screen centering with blur backdrop -->
+<div class="relative flex min-h-screen w-full flex-col items-center justify-center p-4">
+<!-- Background decorative elements -->
+<div class="absolute inset-0 z-0 bg-cover bg-center opacity-30 blur-sm" data-alt="Abstract modern dashboard interface background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCarituJt1B0gUCpTp6EaQjuIRaS-3g7KxAT_PsbkcgtZoq1s36zAEL1kJYHaI11A8WJa_QO6Og4mYov_st_4k9CAQWVNKYWnz1-l4b1Ue5Wjdnj9TWmK1XMP8fQBs0OGUoBFh2pocRDunK-1xrUGXMGAS9QyoD5tm81WnDAIZRj1WCb-LxG1jHgZ4VK0jn9EIn02AnQlDPVynNI6n4CKYS8ICrer0m2gZPzJJkfCS4I9aAiHYYfIcoEt_lgyZgmFRkYax10JQRlQ");'></div>
+<div class="absolute inset-0 z-0 bg-white/60 dark:bg-black/60 backdrop-blur-sm"></div>
+<!-- Central Card -->
+<div class="relative z-10 w-full max-w-[500px] flex flex-col bg-white dark:bg-[#1a2e1a] rounded-xl shadow-2xl overflow-hidden border border-gray-100 dark:border-gray-800">
+<!-- Header Section -->
+<div class="flex flex-col items-center pt-10 px-8 pb-6 text-center">
+<!-- Large Success Icon -->
+<div class="mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 dark:bg-primary/20">
+<span class="material-symbols-outlined text-primary text-5xl">check_circle</span>
+</div>
+<!-- Title & Subtitle -->
+<h1 class="text-3xl font-bold text-primary-dark dark:text-primary mb-2">Agent Ready!</h1>
+<p class="text-gray-500 dark:text-gray-400 text-lg font-medium">Dialing John Smith...</p>
+</div>
+<!-- Progress Bar -->
+<div class="w-full px-8 mb-8">
+<div class="flex justify-between mb-2">
+<span class="text-xs font-semibold text-primary-dark dark:text-primary">Processing complete</span>
+<span class="text-xs font-semibold text-primary-dark dark:text-primary">100%</span>
+</div>
+<div class="h-2 w-full bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-full rounded-full transition-all duration-500 ease-out"></div>
+</div>
+</div>
+<!-- Vertical Timeline -->
+<div class="px-8 mb-8">
+<div class="grid grid-cols-[32px_1fr] gap-x-3">
+<!-- Step 1: Analyzing profile -->
+<div class="flex flex-col items-center h-full">
+<div class="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="w-[2px] bg-primary h-full my-1 opacity-30"></div>
+</div>
+<div class="pb-6 pt-0.5">
+<p class="text-sm font-medium text-gray-900 dark:text-gray-100">Analyzing profile</p>
+</div>
+<!-- Step 2: Loading knowledge -->
+<div class="flex flex-col items-center h-full">
+<div class="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="w-[2px] bg-primary h-full my-1 opacity-30"></div>
+</div>
+<div class="pb-6 pt-0.5">
+<p class="text-sm font-medium text-gray-900 dark:text-gray-100">Loading knowledge</p>
+</div>
+<!-- Step 3: Establishing connection -->
+<div class="flex flex-col items-center h-full">
+<div class="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="w-[2px] bg-primary h-full my-1 opacity-30"></div>
+</div>
+<div class="pb-6 pt-0.5">
+<p class="text-sm font-medium text-gray-900 dark:text-gray-100">Establishing connection</p>
+</div>
+<!-- Step 4: Agent ready -->
+<div class="flex flex-col items-center h-full">
+<div class="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<div class="w-[2px] bg-primary h-full my-1 opacity-30"></div>
+</div>
+<div class="pb-6 pt-0.5">
+<p class="text-sm font-medium text-gray-900 dark:text-gray-100">Agent ready</p>
+</div>
+<!-- Step 5: Call connecting (Active) -->
+<div class="flex flex-col items-center">
+<div class="flex h-6 w-6 items-center justify-center rounded-full bg-primary/20 animate-pulse">
+<span class="material-symbols-outlined text-[16px] text-primary-dark dark:text-primary animate-bounce" style="animation-duration: 1.5s;">ring_volume</span>
+</div>
+</div>
+<div class="pt-0.5">
+<p class="text-sm font-bold text-primary-dark dark:text-primary animate-pulse">Call connecting...</p>
+</div>
+</div>
+</div>
+<!-- Details Section -->
+<div class="px-8 pb-8">
+<!-- Using a very subtle purple background as requested for differentiation -->
+<div class="bg-[#F8F7FF] dark:bg-[#252230] rounded-lg p-5 border border-[#E9E5FF] dark:border-[#383345]">
+<div class="grid grid-cols-[30%_1fr] gap-y-3 gap-x-4 text-sm">
+<div class="text-gray-500 dark:text-gray-400 font-medium">Lead</div>
+<div class="text-gray-900 dark:text-gray-100 font-semibold truncate">John Smith (TechCorp)</div>
+<div class="text-gray-500 dark:text-gray-400 font-medium">Agent</div>
+<div class="text-gray-900 dark:text-gray-100 font-semibold">Agent Alpha</div>
+<div class="text-gray-500 dark:text-gray-400 font-medium">Type</div>
+<div class="text-gray-900 dark:text-gray-100 font-semibold">Discovery Call</div>
+<div class="text-gray-500 dark:text-gray-400 font-medium">Knowledge</div>
+<div class="text-primary-dark dark:text-primary font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] leading-none">database</span>
+                            47 patterns loaded
+                        </div>
+</div>
+</div>
+</div>
+<!-- Footer Action -->
+<div class="px-8 pb-8 flex justify-center">
+<button class="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 font-medium text-sm transition-colors py-2 px-4 rounded-md hover:bg-gray-50 dark:hover:bg-gray-800">
+                    Cancel Call
+                </button>
+</div>
+</div>
+</div>
+</body></html>

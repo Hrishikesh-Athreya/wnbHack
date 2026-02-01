@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SalesMind AI - Start Call Modal</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6567f1",
+                        "primary-dark": "#4f51c9",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111122",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for better look in modal */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark overflow-hidden h-screen w-full">
+<!-- Mock Dashboard Background (To provide context for the modal) -->
+<div class="absolute inset-0 z-0 flex h-full w-full overflow-hidden blur-[2px] opacity-60 pointer-events-none select-none">
+<!-- Sidebar Mock -->
+<div class="w-64 bg-white dark:bg-[#1e1e2d] border-r border-gray-200 dark:border-gray-700 h-full flex flex-col p-4 gap-4">
+<div class="h-8 w-32 bg-gray-200 dark:bg-gray-700 rounded mb-6"></div>
+<div class="h-10 w-full bg-primary/10 rounded"></div>
+<div class="h-10 w-full bg-transparent rounded"></div>
+<div class="h-10 w-full bg-transparent rounded"></div>
+</div>
+<!-- Main Content Mock -->
+<div class="flex-1 flex flex-col h-full">
+<div class="h-16 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1e1e2d] w-full"></div>
+<div class="p-8 grid grid-cols-3 gap-6">
+<div class="h-32 bg-white dark:bg-[#1e1e2d] rounded-xl shadow-sm border border-gray-200 dark:border-gray-700"></div>
+<div class="h-32 bg-white dark:bg-[#1e1e2d] rounded-xl shadow-sm border border-gray-200 dark:border-gray-700"></div>
+<div class="h-32 bg-white dark:bg-[#1e1e2d] rounded-xl shadow-sm border border-gray-200 dark:border-gray-700"></div>
+<div class="col-span-3 h-96 bg-white dark:bg-[#1e1e2d] rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 mt-4"></div>
+</div>
+</div>
+</div>
+<!-- Modal Overlay -->
+<div class="relative z-50 flex items-center justify-center min-h-screen w-full p-4 bg-gray-900/40 backdrop-blur-sm transition-all duration-300 ease-out">
+<!-- Modal Container -->
+<div class="w-full max-w-[600px] bg-white dark:bg-[#1e1e2d] rounded-2xl shadow-2xl overflow-hidden flex flex-col transform transition-all animate-in fade-in zoom-in-95 duration-200">
+<!-- Header -->
+<div class="px-6 pt-6 pb-4 border-b border-gray-100 dark:border-gray-700 flex justify-between items-start bg-white dark:bg-[#1e1e2d]">
+<div class="flex flex-col gap-1">
+<h2 class="text-[#111118] dark:text-white text-xl font-bold leading-tight">Start Call with John Smith</h2>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#616289] text-[18px]">business</span>
+<p class="text-[#616289] text-sm font-medium">TechCorp Inc</p>
+<span class="text-[#616289] text-xs">•</span>
+<p class="text-[#616289] text-sm font-medium text-green-600 dark:text-green-400">$75,000 deal</p>
+</div>
+</div>
+<button class="text-[#616289] hover:text-[#111118] dark:hover:text-white transition-colors p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Content Body -->
+<div class="p-6 overflow-y-auto max-h-[70vh] bg-white dark:bg-[#1e1e2d] space-y-6">
+<!-- 1. Select Agent -->
+<div class="flex flex-col gap-3">
+<h3 class="text-[#111118] dark:text-white text-sm font-semibold tracking-wide uppercase opacity-80">Select Agent</h3>
+<div class="grid grid-cols-2 gap-4">
+<!-- Agent Card 1 (Selected) -->
+<div class="relative group cursor-pointer">
+<!-- Selected Badge/Border -->
+<div class="absolute -top-2.5 left-1/2 -translate-x-1/2 z-10">
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1">
+                                    Recommended <span class="text-[10px]">⭐</span>
+</span>
+</div>
+<div class="flex flex-col gap-3 p-4 rounded-xl border-2 border-primary bg-primary/5 dark:bg-primary/10 transition-all shadow-sm h-full">
+<div class="flex items-center justify-between">
+<div class="h-10 w-10 rounded-full bg-cover bg-center border border-gray-200" data-alt="Portrait of Agent Alpha" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDbcLQB35HFGWESrP94HF_VbfXonIj5iwADYxTYg3BwyQhq55uRG_pHJ333z7VhRPSW17AXbhFTfH0Q5wKeeNifAgwQyj17zMWdnR01k1Oh0sc3LWSx30R7Rl7nFlq9jCKQ4fxyCfAKKMd4TbsOL-3QxKWpi5OHucqP3qPAx0u33LIvWhvc0XRUfT5eprLkdvlPGGf7M-dOfQZ7kP1pj0uvLlZa6Tyg647t6PItNLHryth1ma92NGFV7GkFkeH81uhs3DttUxe4CA");'></div>
+<div class="h-6 w-6 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</div>
+<div>
+<p class="text-[#111118] dark:text-white font-bold text-base">Agent Alpha</p>
+<p class="text-green-600 dark:text-green-400 text-xs font-semibold flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                                        98% Success Rate
+                                    </p>
+</div>
+</div>
+</div>
+<!-- Agent Card 2 (Unselected) -->
+<div class="relative group cursor-pointer">
+<div class="flex flex-col gap-3 p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-600 transition-all h-full">
+<div class="flex items-center justify-between">
+<div class="h-10 w-10 rounded-full bg-cover bg-center border border-gray-200" data-alt="Portrait of Agent Beta" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDuh1NM1zNt0TEhkN1nmCwXTH3Q_8hLMi5GAKsFJ4ZSz2aBvoki7tBgrn1L3eC8hwTjtgwQFaMbvTzX3pTfWpBq4EbFw5_AAnxzcRnkik18Y_-hYaLEREY8V6SSGKA5xJr5N5E3Tncmg8J2jUNfs-OathAQ3fUWPOvy6rnjEeeZnVwYlA0svwWqorXH_dPnUliNJoz6skPEZ1RiietjQBzDv4F42H0Mw7zNYLNKgeYQJUxCdyxw34qM42E9PHObbOjuWtzQNSeY1Q");'></div>
+<div class="h-6 w-6 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center">
+</div>
+</div>
+<div>
+<p class="text-[#111118] dark:text-gray-200 font-bold text-base">Agent Beta</p>
+<p class="text-[#616289] text-xs font-medium flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                                        85% Success Rate
+                                    </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. Call Type -->
+<div class="flex flex-col gap-2">
+<label class="text-[#111118] dark:text-white text-sm font-semibold tracking-wide uppercase opacity-80">Call Objective</label>
+<div class="relative">
+<select class="w-full appearance-none rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-[#111118] dark:text-white px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm font-medium cursor-pointer">
+<option>Discovery Call</option>
+<option>Product Demo</option>
+<option>Closing Negotiation</option>
+<option>Follow-up</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#616289]">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<!-- 3. Lead Context -->
+<div class="flex flex-col gap-2">
+<label class="text-[#111118] dark:text-white text-sm font-semibold tracking-wide uppercase opacity-80">Lead Context</label>
+<div class="flex flex-wrap gap-2">
+<div class="inline-flex items-center rounded-md bg-blue-50 dark:bg-blue-900/30 px-3 py-1.5 text-xs font-medium text-blue-700 dark:text-blue-300 ring-1 ring-inset ring-blue-700/10">
+<span class="material-symbols-outlined text-[14px] mr-1.5">history</span>
+                            2 previous calls
+                        </div>
+<div class="inline-flex items-center rounded-md bg-purple-50 dark:bg-purple-900/30 px-3 py-1.5 text-xs font-medium text-purple-700 dark:text-purple-300 ring-1 ring-inset ring-purple-700/10">
+<span class="material-symbols-outlined text-[14px] mr-1.5">laptop_mac</span>
+                            Demo requested
+                        </div>
+<div class="inline-flex items-center rounded-md bg-green-50 dark:bg-green-900/30 px-3 py-1.5 text-xs font-medium text-green-700 dark:text-green-300 ring-1 ring-inset ring-green-600/20">
+<span class="material-symbols-outlined text-[14px] mr-1.5">payments</span>
+                            Budget: $50K-100K
+                        </div>
+</div>
+</div>
+</div>
+<!-- Footer / Actions -->
+<div class="px-6 py-4 bg-gray-50 dark:bg-[#151520] border-t border-gray-100 dark:border-gray-700 flex justify-end gap-3">
+<button class="px-5 py-2.5 rounded-lg border border-gray-200 dark:border-gray-600 text-[#616289] dark:text-gray-300 text-sm font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-200">
+                    Cancel
+                </button>
+<button class="px-5 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-sm font-semibold shadow-md shadow-primary/20 flex items-center gap-2 transition-all transform active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+<span class="material-symbols-outlined text-[18px]">call</span>
+                    Start Call
+                </button>
+</div>
+</div>
+</div>
+</body></html>

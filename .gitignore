@@ -1,0 +1,12 @@
+voice-module/app/api/__pycache__/
+voice-module/app/services/__pycache__/
+*/__pycache__/
+voice-module/bot/tools/__pycache__/
+voice-module/bot/handlers/__pycache__/
+voice-module/bot/__pycache__/
+frontend/public/agent-audio/
+voice-module/app/__pycache__/
+__pycache__/
+voice-module/logs/
+.env
+voice-module/.DS_Store
